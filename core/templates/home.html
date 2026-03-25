@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="home-wrapper">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1 class="title">⚡ SportsHub</h1>
+        <p class="subtitle">Your Ultimate Sports Companion</p>
+    </div>
+
+    <!-- USER GREETING -->
+    <div class="welcome">
+        <h2>Welcome, {{ user.username|default:"Guest" }} 👋</h2>
+    </div>
+
+    <!-- MENU -->
+    <div class="menu-box">
+        <a href="/live/">🔥 Live Scores</a>
+        <a href="/fixtures/">📅 Fixtures</a>
+        <a href="/news/">📰 News</a>
+        <a href="/reels/">🎬 Reels</a>
+
+        {% if user.is_authenticated %}
+            <a href="/favorites/">⭐ Favorites</a>
+            <a href="/add-favorite/">➕ Add Favorite</a>
+            <a href="/logout/" class="logout">🚪 Logout</a>
+        {% else %}
+            <a href="/login/">🔐 Login</a>
+            <a href="/signup/">📝 Signup</a>
+        {% endif %}
+    </div>
+
+</div>
+
+<style>
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #38bdf8, #0ea5e9, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #cbd5f5;
+    margin-top: 5px;
+}
+
+/* WELCOME */
+.welcome {
+    margin-top: 20px;
+}
+
+/* MENU BOX */
+.menu-box {
+    margin-top: 30px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* MENU ITEMS */
+.menu-box a {
+    text-decoration: none;
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* HOVER EFFECT */
+.menu-box a:hover {
+    background: #38bdf8;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* LOGOUT SPECIAL */
+.logout {
+    background: #ef4444;
+}
+
+.logout:hover {
+    background: #dc2626;
+    color: white;
+}
+</style>
+
+{% endblock %}

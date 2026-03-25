@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 style="text-align:center;">🎬 Reels</h2>
+
+<div class="reels-container">
+    {% for video in videos %}
+    <div class="reel">
+        <video class="reel-video" muted loop>
+            <source src="{% static video %}" type="video/mp4">
+        </video>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+.reels-container {
+    height: 90vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.reel {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+.reel-video {
+    height: 80%;
+    border-radius: 12px;
+}
+</style>
+
+<script>
+const videos = document.querySelectorAll(".reel-video");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.play();
+        } else {
+            entry.target.pause();
+        }
+    });
+}, { threshold: 0.7 });
+
+videos.forEach(video => {
+    observer.observe(video);
+});
+</script>
+
+{% endblock %}

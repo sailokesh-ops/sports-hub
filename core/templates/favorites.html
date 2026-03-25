@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>⭐ Your Favorite Teams</h2>
+
+{% for team in teams %}
+<div class="card">
+    <h3>{{ team.team_name }}</h3>
+</div>
+{% empty %}
+<p>No favorites yet</p>
+{% endfor %}
+
+{% endblock %}

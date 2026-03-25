@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>📰 Sports News</h2>
+
+<div class="news-container">
+    {% for article in articles %}
+    {% if articles|length == 0 %}
+    <p>No news for your favorites yet 😢</p>
+    {% endif %}
+    <div class="news-card">
+        <img src="{{ article.image }}" alt="news">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description }}</p>
+        <button>Read More</button>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.news-card {
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+}
+
+.news-card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.news-card h3 {
+    padding: 10px;
+    color: #38bdf8;
+}
+
+.news-card p {
+    padding: 0 10px;
+    color: #cbd5f5;
+}
+</style>
+
+{% endblock %}

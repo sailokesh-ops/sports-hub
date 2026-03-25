@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>📅 Upcoming Matches</h2>
+
+{% for match in matches %}
+<div class="card">
+    <h3>{{ match.team1 }} 🆚 {{ match.team2 }}</h3>
+    <p>{{ match.status }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
